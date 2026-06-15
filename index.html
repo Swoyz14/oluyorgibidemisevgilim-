@@ -113,8 +113,8 @@ document.getElementById("loveTimer").innerHTML=`${d} Gün ${h} Saat ${m} Dakika 
 
 function updateBirthday(){
 const now=new Date();
-let target=new Date(now.getFullYear(),10,25);
-if(now>target) target=new Date(now.getFullYear()+1,10,25);
+let target = new Date(now.getFullYear(),9,25);
+if(now>target) target = new Date(now.getFullYear()+1,9,25);
 const diff=target-now;
 const d=Math.floor(diff/86400000);
 const h=Math.floor(diff/3600000)%24;
