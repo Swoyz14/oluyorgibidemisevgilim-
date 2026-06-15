@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>❤️</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,sans-serif}
+body{background:#0b0b14;color:#fff;overflow-x:hidden}
+section{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:30px;text-align:center}
+.card{background:rgba(255,255,255,.06);backdrop-filter:blur(12px);border-radius:25px;padding:25px;margin:15px;width:95%;max-width:800px}
+h1{font-size:3rem;margin-bottom:15px}
+h2{margin-bottom:10px}
+p{line-height:1.8}
+.timer{font-size:1.4rem;font-weight:bold;margin-top:10px}
+.heart{position:fixed;bottom:-50px;animation:float 10s linear infinite;pointer-events:none}
+@keyframes float{from{transform:translateY(0)}to{transform:translateY(-120vh);opacity:0}}
+
+#lockScreen{
+position:fixed;inset:0;background:#0b0b14;
+display:flex;justify-content:center;align-items:center;z-index:9999
+}
+.lockBox{
+background:rgba(255,255,255,.06);
+padding:30px;border-radius:25px;width:90%;max-width:400px
+}
+.lockBox input{
+width:100%;padding:14px;border:none;border-radius:15px;margin-top:10px
+}
+.lockBox button{
+padding:12px 20px;border:none;border-radius:15px;margin-top:10px;cursor:pointer
+}
+#error{margin-top:10px;color:#ff8ca1}
+</style>
+</head>
+<body>
+
+<div id="lockScreen">
+<div class="lockBox">
+<h2>❤️ Hoş Geldin Prensesim ❤️</h2>
+<p>Bu sayfa sadece sana ait.</p>
+<input type="password" id="password" placeholder="Şifre">
+<button onclick="checkPassword()">Giriş Yap</button>
+<p id="error"></p>
+</div>
+</div>
+
+<div id="websiteContent" style="display:none;">
+
+<section>
+<h1>✨</h1>
+<p>Bu sayfa kalbimin en güzel yerinde duran tek insan için... ❤️</p>
+</section>
+
+<section>
+<div class="card">
+<h2>⏳ Birlikte Geçen Süre</h2>
+<div id="loveTimer" class="timer"></div>
+</div>
+</section>
+
+<section>
+<div class="card"><h2>💌 Bitanem</h2><p>Günümün en güzel anlarından biri seninle konuşmak.</p></div>
+<div class="card"><h2>👑 Prensesim</h2><p>Gülüşün kötü geçen bir günü bile güzelleştirebiliyor.</p></div>
+<div class="card"><h2>✨ Kraliçem</h2><p>Hayatıma kattığın mutluluğu kelimelerle anlatmak zor.</p></div>
+<div class="card"><h2>❤️ Aşkım</h2><p>Seninle geçen sıradan bir gün bile benim için özel.</p></div>
+<div class="card"><h2>🌙 Hayatım</h2><p>İyi ki varsın. İyi ki yollarımız kesişmiş.</p></div>
+</section>
+
+<section>
+<div class="card">
+<h2>🎂 25 Kasım'a Kalan Süre</h2>
+<div id="birthdayTimer" class="timer"></div>
+</div>
+</section>
+
+<section>
+<div class="card">
+<h2>⭐ Hayallerimiz</h2>
+<p>Birlikte gezilecek yerler, izlenecek filmler, kurulacak hayaller ve daha nice güzel anılar...</p>
+</div>
+</section>
+
+<section>
+<h1>❤️</h1>
+<p>Seni bugün dünden daha çok, yarın bugünden daha çok seveceğim.</p>
+</section>
+
+</div>
+
+<script>
+function checkPassword(){
+let p=document.getElementById("password").value;
+if(p==="1921"){
+document.getElementById("lockScreen").style.display="none";
+document.getElementById("websiteContent").style.display="block";
+}else{
+document.getElementById("error").innerText="Şifre yanlış ❤️";
+}
+}
+
+const loveDate=new Date("2026-05-02T19:21:00");
+
+function updateLove(){
+const now=new Date();
+const diff=now-loveDate;
+const d=Math.floor(diff/86400000);
+const h=Math.floor(diff/3600000)%24;
+const m=Math.floor(diff/60000)%60;
+const s=Math.floor(diff/1000)%60;
+document.getElementById("loveTimer").innerHTML=`${d} Gün ${h} Saat ${m} Dakika ${s} Saniye`;
+}
+
+function updateBirthday(){
+const now=new Date();
+let target=new Date(now.getFullYear(),10,25);
+if(now>target) target=new Date(now.getFullYear()+1,10,25);
+const diff=target-now;
+const d=Math.floor(diff/86400000);
+const h=Math.floor(diff/3600000)%24;
+const m=Math.floor(diff/60000)%60;
+const s=Math.floor(diff/1000)%60;
+document.getElementById("birthdayTimer").innerHTML=`${d} Gün ${h} Saat ${m} Dakika ${s} Saniye`;
+}
+
+setInterval(()=>{updateLove();updateBirthday();},1000);
+
+function heart(){
+const h=document.createElement("div");
+h.className="heart";
+h.innerHTML="❤️";
+h.style.left=Math.random()*100+"vw";
+h.style.fontSize=(20+Math.random()*20)+"px";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),10000);
+}
+setInterval(heart,500);
+</script>
+</body>
+</html>
